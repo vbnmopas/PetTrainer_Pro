@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var btn3 : Button
     lateinit var button1 : Button
 
-
-
     //캘린더 변수 주석
     lateinit var mCalendarView: CalendarView
 
@@ -56,9 +54,9 @@ class MainActivity : AppCompatActivity() {
     // 웹뷰 선언
     lateinit var webView: WebView
 
-
+    //버튼 선언
     lateinit var webview_btn : Button
-
+    lateinit var recordBtn : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +72,14 @@ class MainActivity : AppCompatActivity() {
 ////        txtmoney = findViewById<TextView>(R.id.txtmoney)
 ////        ttinout = findViewById<TextView>(R.id.ttinout)
         btn3 = findViewById<Button>(R.id.btn3)
-        button1 = findViewById<Button>(R.id.button1)
+//        button1 = findViewById<Button>(R.id.button1)
+
+        recordBtn = findViewById<Button>(R.id.recordBtn)
+        recordBtn.setOnClickListener {
+            val intent = Intent(this, RecordActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
 
@@ -92,8 +97,8 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
         webView.webViewClient = WebViewClient()
 
+
         // 웹뷰 설정 (JavaScript 활성화)
-//        val webSettings: WebSettings = webView.settings
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.loadWithOverviewMode = true

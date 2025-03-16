@@ -98,6 +98,18 @@
                 android:textStyle="bold"
                 android:textColor="#fff" />
 
+            <Button
+                android:id="@+id/recordBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2196F3"
+                android:text="녹음하기"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#fff" />
+
+
+
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"

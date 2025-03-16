@@ -45,7 +45,7 @@ class WebViewActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right) // 왼쪽에서 오른쪽으로 슬라이드 효과
+//            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right) // 왼쪽에서 오른쪽으로 슬라이드 효과
             finish() // 현재 액티비티 종료
         }
 
