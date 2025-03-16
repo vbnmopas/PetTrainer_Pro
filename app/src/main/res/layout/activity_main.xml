@@ -33,9 +33,8 @@
                     android:layout_weight="1"
                     android:background="@color/bb"
                     android:onClick="mlist"
-                    android:text="상세내역"
-                    android:textColor="@color/tt"
-                    android:textSize="10dp" />
+                    android:text="홈"
+                    android:textColor="@color/tt" />
             </LinearLayout>
 
 
@@ -50,7 +49,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="가계부"
+                    android:text="MY PET"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -66,7 +65,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/bb"
                     android:onClick="btn3"
-                    android:text="편집"
+                    android:text="버튼"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -78,37 +77,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:background="@color/white">
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-
-                <androidx.camera.view.PreviewView
-                    android:id="@+id/previewView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
 
 
@@ -130,11 +98,12 @@
                 android:textStyle="bold"
                 android:textColor="#fff" />
 
-
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
 
 
         </LinearLayout>

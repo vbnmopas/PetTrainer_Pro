@@ -44,8 +44,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btn3 : Button
     lateinit var button1 : Button
 
-    lateinit var sqlDB : SQLiteDatabase
-    lateinit var myHelper : myDBHelper
+
 
     //캘린더 변수 주석
     lateinit var mCalendarView: CalendarView
@@ -77,28 +76,6 @@ class MainActivity : AppCompatActivity() {
         btn3 = findViewById<Button>(R.id.btn3)
         button1 = findViewById<Button>(R.id.button1)
 
-        myHelper = myDBHelper(this)
-        sqlDB = myHelper.readableDatabase
-        var cursor: Cursor? = null
-        cursor = sqlDB.rawQuery("SELECT * FROM MONEYdb;", null)
-
-
-
-
-
-
-
-
-
-//        ---------------------------------------------------------------------------------------
-
-        //카메라 실행
-//        val previewView: PreviewView = findViewById(R.id.previewView)
-//        startCamera(previewView)
-//
-//        checkAndRequestPermissions(previewView) // 📌 권한 요청을 먼저 실행
-
-//        cameraExecutor = Executors.newSingleThreadExecutor()
 
 
         webview_btn = findViewById<Button>(R.id.WebView_btn)
@@ -116,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClient()
 
         // 웹뷰 설정 (JavaScript 활성화)
+//        val webSettings: WebSettings = webView.settings
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.loadWithOverviewMode = true
@@ -132,71 +110,6 @@ class MainActivity : AppCompatActivity() {
 //        webView.loadUrl("https://www.youtube.com")
 
 
-
-
-
-
     }
-
-    class myDBHelper(context: Context) : SQLiteOpenHelper(context, "MONEYdb", null, 1) {
-        override fun onCreate(db: SQLiteDatabase) {
-            db.execSQL("CREATE TABLE MONEYdb (gName TEXT, gtt INTEGER, ginout INTEGER, gbtnn INTEGER, gNumber INTEGER);")
-            // gName: 내용 gtt: 날짜 ginout: 수입인지 지출인지(수입:1, 지출:2) gbtnn: 항목버튼 gNumber: 금액
-        }
-
-        override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-            db.execSQL("DROP TABLE IF EXISTS MONEYdb")
-            onCreate(db)
-        }
-
-
-    }
-
-    //카메라 메서드
-    private fun startCamera(previewView: PreviewView) {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-
-            val preview = androidx.camera.core.Preview.Builder().build()
-                .also {
-                    it.setSurfaceProvider(previewView.surfaceProvider)
-                }
-
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-            try {
-                cameraProvider.unbindAll()
-                val camera: Camera = cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview
-                )
-            } catch (exc: Exception) {
-                Log.e("CameraX", "카메라 실행 실패", exc)
-            }
-
-        }, ContextCompat.getMainExecutor(this))
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-
-    private fun checkAndRequestPermissions(previewView: PreviewView) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_CODE
-            )
-        } else {
-            startCamera(previewView) // 📌 권한이 있으면 카메라 실행
-        }
-    }
-
-
 
 }

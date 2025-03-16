@@ -1,6 +1,7 @@
 package org.techtown.multiwindow
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -28,10 +29,29 @@ class WebViewActivity : AppCompatActivity() {
     private lateinit var cameraExecutor: ExecutorService;
     private val CAMERA_PERMISSION_CODE = 100
 
+    //버튼 변수 선언
+    lateinit var backButton : Button
+    lateinit var btn3 : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webview)
+
+
+        backButton = findViewById<Button>(R.id.backButton)
+        btn3 = findViewById<Button>(R.id.btn3)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right) // 왼쪽에서 오른쪽으로 슬라이드 효과
+            finish() // 현재 액티비티 종료
+        }
+
+
+
+
 
         //카메라 실행
         val previewView: PreviewView = findViewById(R.id.cameraView)
