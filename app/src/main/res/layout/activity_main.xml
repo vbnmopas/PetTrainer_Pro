@@ -91,117 +91,13 @@
                 android:layout_weight="8"
                 android:background="@color/white">
 
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="수입"
-                            android:textColor="@color/tt"
-                            android:textSize="10dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="지출"
-                            android:textColor="@color/tt"
-                            android:textSize="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/tt"
-                            android:textSize="10dp" />
-
-                        <TextView
-                            android:id="@+id/txtmoney"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/tt"
-                            android:textSize="10dp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="잔액"
-                            android:textColor="@color/tt"
-                            android:textSize="10dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/tt"
-                            android:textSize="10dp" />
-                    </LinearLayout>
-                </LinearLayout>-->
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-<!--
-
-                <CalendarView
-                    android:id="@+id/calendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/bbb2"
-                    android:focusedMonthDateColor="@color/black"
-                    android:selectedWeekBackgroundColor="@color/bb"
-                    android:unfocusedMonthDateColor="@color/black"
-                    android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body1" />
--->
 
 
                 <androidx.camera.view.PreviewView
@@ -222,56 +118,6 @@
             android:layout_weight="2.5"
             android:background="@color/white">
 
-            <!--<ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/ttinout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.2"
-                        android:gravity="center"
-                        android:textColor="@color/tt2"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/edtshow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/tt"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/edtshow2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/tt"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/edtshow3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/tt"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-
-            </ScrollView>-->
 
 
             <Button

@@ -68,12 +68,12 @@ class MainActivity : AppCompatActivity() {
         //title = "가계부"
 
 //        edtshow = findViewById<TextView>(R.id.edtshow)
-//        edtshow2 = findViewById<TextView>(R.id.edtshow2)
-//        edtshow3 = findViewById<TextView>(R.id.edtshow3)
-//        txtin = findViewById<TextView>(R.id.txtin)
-//        txtout = findViewById<TextView>(R.id.txtout)
-//        txtmoney = findViewById<TextView>(R.id.txtmoney)
-//        ttinout = findViewById<TextView>(R.id.ttinout)
+////        edtshow2 = findViewById<TextView>(R.id.edtshow2)
+////        edtshow3 = findViewById<TextView>(R.id.edtshow3)
+////        txtin = findViewById<TextView>(R.id.txtin)
+////        txtout = findViewById<TextView>(R.id.txtout)
+////        txtmoney = findViewById<TextView>(R.id.txtmoney)
+////        ttinout = findViewById<TextView>(R.id.ttinout)
         btn3 = findViewById<Button>(R.id.btn3)
         button1 = findViewById<Button>(R.id.button1)
 
@@ -83,95 +83,12 @@ class MainActivity : AppCompatActivity() {
         cursor = sqlDB.rawQuery("SELECT * FROM MONEYdb;", null)
 
 
-        //총수입, 총지출, 잔액 계산해서 textview에 출력하기 (메인 홈화면
-       /* var cc = 0
-        var cc2 = 0
-        var cc3 = 0
-        var aa: String? = ""
-        var aa2: String? = ""
-        val aa3: String
-        while (cursor.moveToNext()) {
-            //ginout가 1일때(데이터가 수입일때)
-            if (cursor.getInt(2) == 1) {
-                cc = cc + cursor.getInt(4)
-                aa = Integer.toString(cc)
-                txtin.text = aa
-            } else {
-                cc2 = cc2 + cursor.getInt(4)
-                aa2 = Integer.toString(cc2)
-                txtmoney.text = aa2
-            }
-        }
-
-        cc3 = cc - cc2
-        aa3 = Integer.toString(cc3)
-        txtout.text = aa3*/
 
 
 
 
-/*
-        //!!!!!!!!!캘린더내용 주석!!!!!!!!!
-        //캘린더 날짜를 누르면 실행
-        mCalendarView = findViewById<CalendarView>(R.id.calendarView)
-        mCalendarView.setOnDateChangeListener { calendarView, year, month, day ->
-            val date = "$year/${month + 1}/$day"
-            val ii1 = year.toString()
-            val ii2 = (month + 1).toString()
-            val ii3 = day.toString()
-            val date3 = ii1 + ii2 + ii3
-            Log.d(TAG, "onSelectDayChange: date: $date")
 
 
-            sqlDB = myHelper.readableDatabase
-            var cursor: Cursor
-            cursor = sqlDB.rawQuery("SELECT * FROM MONEYdb WHERE gtt = '$date3';", null)
-
-            var strtext = ""
-            var strmoney = ""
-            var strbtn = ""
-            var strinout = ""
-
-            var a: Int = 0
-            var b: String = ""
-
-            while (cursor.moveToNext()) {
-                strtext += cursor.getString(0) + "\r\n"
-                strmoney += cursor.getString(4) + "\r\n"
-                a = cursor.getString(3).toInt()
-                b = when (a) {
-                    1 -> "용돈"
-                    2 -> "월급"
-                    3 -> "식비"
-                    4 -> "교통비"
-                    5 -> "통신비"
-                    6 -> "공과금"
-                    else -> "생필품"
-                }
-                strbtn += "$b\r\n"
-            }
-
-            sqlDB = myHelper.readableDatabase
-            cursor = sqlDB.rawQuery("SELECT * FROM MONEYdb WHERE gtt = '$date3';", null)
-            var ab: Int
-            while (cursor.moveToNext()) {
-                ab = cursor.getString(2).toInt()
-                if (ab == 1) {
-                    strinout += "수입\r\n"
-                } else {
-                    strinout += "지출\r\n"
-                }
-            }
-
-            edtshow2.setText(strtext)
-            edtshow3.setText(strmoney)
-            edtshow.setText(strbtn)
-            ttinout.setText(strinout)
-
-            cursor?.close()
-            sqlDB?.close()
-        }
-*/
 
 //        ---------------------------------------------------------------------------------------
 
@@ -199,7 +116,6 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = WebViewClient()
 
         // 웹뷰 설정 (JavaScript 활성화)
-//        val webSettings: WebSettings = webView.settings
         val webSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.loadWithOverviewMode = true
@@ -217,29 +133,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-//        -------------------------------------------------------------------------------
-        //!!!!!!!!!캘린더내용 주석!!!!!!!!!
-    //편집누르면 편집화면 이동
-//        btn3.setOnClickListener {
-//            //달력을 클릭하지 않고 편집버튼을 눌러서 편집화면으로 감, 갈때 date에 오늘날짜를 넣어준다.
-//            if (date == "") {
-//                var today = SimpleDateFormat("yyyy/m/dd").format(Date())
-//                date = today
-//                var today2 = SimpleDateFormat("yyyymdd").format(Date())
-//                date3 = today2
-//            }
-//            var intent = Intent(applicationContext, AddActivity::class.java)
-//            intent.putExtra("date", date)
-//            intent.putExtra("date3", date3)
-//            startActivity(intent)
-//        }
-//
-//        //상세내역버튼눌러서 화면 이동
-//        button1.setOnClickListener  {
-//            var intent = Intent(applicationContext, DetailsActivity::class.java)
-//            startActivity(intent)
-//        }
 
 
 
