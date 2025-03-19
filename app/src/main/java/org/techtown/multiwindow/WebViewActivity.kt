@@ -29,9 +29,13 @@ class WebViewActivity : AppCompatActivity() {
     private lateinit var cameraExecutor: ExecutorService;
     private val CAMERA_PERMISSION_CODE = 100
 
+    // 카메라 상태를 저장할 변수
+    private var isFrontCamera = false
+
     //버튼 변수 선언
     lateinit var backButton : Button
     lateinit var btn3 : Button
+    lateinit var btnSwitchCamera : Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +45,7 @@ class WebViewActivity : AppCompatActivity() {
 
         backButton = findViewById<Button>(R.id.backButton)
         btn3 = findViewById<Button>(R.id.btn3)
+        btnSwitchCamera = findViewById(R.id.btnSwitchCamera)
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -49,13 +54,19 @@ class WebViewActivity : AppCompatActivity() {
             finish() // 현재 액티비티 종료
         }
 
+        // 카메라 전환 버튼 클릭 리스너
+        btnSwitchCamera.setOnClickListener {
+            // 기존 카메라 상태 반전
+            isFrontCamera = !isFrontCamera
+            val previewView: PreviewView = findViewById(R.id.cameraView)
+            checkAndRequestPermissions(previewView, isFrontCamera) // 카메라 전환
+        }
+
 
 
         //카메라 실행
         val previewView: PreviewView = findViewById(R.id.cameraView)
-        startCamera(previewView)
-
-        checkAndRequestPermissions(previewView) // 📌 권한 요청을 먼저 실행
+        checkAndRequestPermissions(previewView, isFrontCamera) // 📌 권한 요청을 먼저 실행
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
@@ -92,7 +103,7 @@ class WebViewActivity : AppCompatActivity() {
 
 
     //카메라 메서드
-    private fun startCamera(previewView: PreviewView) {
+    private fun startCamera(previewView: PreviewView, isFrontCamera: Boolean) {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener({
@@ -103,7 +114,12 @@ class WebViewActivity : AppCompatActivity() {
                     it.setSurfaceProvider(previewView.surfaceProvider)
                 }
 
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            // 전면 카메라 선택 여부에 따른 카메라 설정
+            val cameraSelector = if (isFrontCamera) {
+                CameraSelector.DEFAULT_FRONT_CAMERA
+            } else {
+                CameraSelector.DEFAULT_BACK_CAMERA
+            }
 
             try {
                 cameraProvider.unbindAll()
@@ -117,12 +133,14 @@ class WebViewActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
 
-    private fun checkAndRequestPermissions(previewView: PreviewView) {
+    // 권한 체크 및 요청 메서드 (isFrontCamera 추가)
+    private fun checkAndRequestPermissions(previewView: PreviewView, isFrontCamera: Boolean) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -132,8 +150,10 @@ class WebViewActivity : AppCompatActivity() {
                 CAMERA_PERMISSION_CODE
             )
         } else {
-            startCamera(previewView) // 📌 권한이 있으면 카메라 실행
+            startCamera(previewView, isFrontCamera) // 📌 권한이 있으면 카메라 실행 (isFrontCamera 추가)
         }
     }
+
+
 }
 
