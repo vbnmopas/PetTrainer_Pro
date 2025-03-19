@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <LinearLayout
         android:id="@+id/btnadd"
@@ -11,7 +11,7 @@
         android:background="@color/bb"
         android:orientation="vertical">
 
-
+        <!-- 상단 네비게이션 바 -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,10 +21,10 @@
                 android:id="@+id/text1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentTop="true"
                 android:gravity="center"
                 android:orientation="horizontal">
 
+                <!-- 홈 버튼 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -42,7 +42,7 @@
                         android:textSize="15dp" />
                 </LinearLayout>
 
-
+                <!-- 중앙 제목 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -58,11 +58,11 @@
                         android:textColor="@color/black" />
                 </LinearLayout>
 
+                <!-- 우측 버튼 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1.2">
-
 
                     <Button
                         android:id="@+id/btn3"
@@ -70,43 +70,33 @@
                         android:layout_height="match_parent"
                         android:onClick="btn3"
                         android:text=""
+                        android:background="#FBF7F7"
                         android:textColor="@color/black" />
-
                 </LinearLayout>
-
             </LinearLayout>
         </RelativeLayout>
 
-
-
-
-        <LinearLayout
+        <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">  <!-- 세로 방향으로 배치 -->
+            android:layout_height="match_parent">
 
-            <!-- 카메라 프리뷰 (위쪽) -->
+            <!-- 카메라 프리뷰 (왼쪽 상단 고정) -->
             <androidx.camera.view.PreviewView
                 android:id="@+id/cameraView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/> <!-- 화면의 절반 차지 -->
+                android:layout_width="340dp"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
 
-            <!-- 웹뷰 (아래쪽) -->
+            <!-- 웹뷰 (카메라 아래쪽부터 전체 영역) -->
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/> <!-- 화면의 절반 차지 -->
-
-        </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_below="@id/cameraView"/>
+        </RelativeLayout>
 
     </LinearLayout>
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

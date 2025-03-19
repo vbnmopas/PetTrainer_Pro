@@ -8,6 +8,7 @@
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
     <application
@@ -40,6 +41,9 @@
 
         <!--20250316-->
         <activity android:name=".WebViewActivity" />
+        <!--20250316-->
+        <activity android:name=".RecordActivity" />
+        <activity android:name=".TrainActivity" />
 
     </application>
 

@@ -23,24 +23,13 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import java.net.InetAddress
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var edtshow : TextView
-    lateinit var edtshow2 : TextView
-    lateinit var edtshow3 : TextView
-    lateinit var date : String
-    lateinit var ii1 : String
-    lateinit var ii2 : String
-    lateinit var ii3 : String
-    lateinit var date3 : String
-    lateinit var txtin : TextView
-    lateinit var txtout : TextView
-    lateinit var txtmoney : TextView
-    lateinit var ttinout : TextView
     lateinit var btn3 : Button
     lateinit var button1 : Button
 
@@ -57,20 +46,33 @@ class MainActivity : AppCompatActivity() {
     //버튼 선언
     lateinit var webview_btn : Button
     lateinit var recordBtn : Button
+    lateinit var trainBtn : Button
+    lateinit var foodBtn: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //title = "가계부"
+        Thread {
+            try {
+                val serverIp = "43.201.77.16" // 여기에 MQTT 서버 IP 입력
+                val address = InetAddress.getByName(serverIp)
+                val reachable = address.isReachable(3000) // 3초 동안 핑 테스트
 
-//        edtshow = findViewById<TextView>(R.id.edtshow)
-////        edtshow2 = findViewById<TextView>(R.id.edtshow2)
-////        edtshow3 = findViewById<TextView>(R.id.edtshow3)
-////        txtin = findViewById<TextView>(R.id.txtin)
-////        txtout = findViewById<TextView>(R.id.txtout)
-////        txtmoney = findViewById<TextView>(R.id.txtmoney)
-////        ttinout = findViewById<TextView>(R.id.ttinout)
+                if (reachable) {
+                    Log.d("PING", "$serverIp is reachable!")
+                } else {
+                    Log.e("PING", "$serverIp is NOT reachable!")
+                }
+            } catch (e: Exception) {
+                Log.e("PING", "Error: ${e.message}")
+            }
+        }.start()
+
+
+        //---------------------------------------------------------------
+
         btn3 = findViewById<Button>(R.id.btn3)
 //        button1 = findViewById<Button>(R.id.button1)
 
@@ -78,6 +80,18 @@ class MainActivity : AppCompatActivity() {
         recordBtn.setOnClickListener {
             val intent = Intent(this, RecordActivity::class.java)
             startActivity(intent)
+        }
+
+        trainBtn = findViewById<Button>(R.id.trainBtn)
+        trainBtn.setOnClickListener {
+            val intent = Intent(this, TrainActivity::class.java)
+            startActivity(intent)
+        }
+
+        foodBtn = findViewById(R.id.foodBtn)
+        foodBtn.setOnClickListener{
+            //새페이지 이동이 아니라 작은 창 띄워서 해결하고싶음
+
         }
 
 

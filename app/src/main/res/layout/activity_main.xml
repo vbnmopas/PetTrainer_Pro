@@ -108,6 +108,26 @@
                 android:textStyle="bold"
                 android:textColor="#fff" />
 
+            <Button
+                android:id="@+id/trainBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2196F3"
+                android:text="훈련하기"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/foodBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#2196F3"
+                android:text="밥 주기"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#fff" />
+
 
 
             <WebView

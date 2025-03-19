@@ -51,8 +51,6 @@ class WebViewActivity : AppCompatActivity() {
 
 
 
-
-
         //카메라 실행
         val previewView: PreviewView = findViewById(R.id.cameraView)
         startCamera(previewView)
