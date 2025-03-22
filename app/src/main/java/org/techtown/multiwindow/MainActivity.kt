@@ -16,6 +16,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var webview_btn : Button
     lateinit var recordBtn : Button
     lateinit var trainBtn : Button
-    lateinit var foodBtn: Button
+    lateinit var feedBtn: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,11 +77,19 @@ class MainActivity : AppCompatActivity() {
         btn3 = findViewById<Button>(R.id.btn3)
 //        button1 = findViewById<Button>(R.id.button1)
 
+        webview_btn = findViewById<Button>(R.id.WebView_btn)
+        webview_btn.setOnClickListener {
+            val intent = Intent(applicationContext, WebViewActivity::class.java)
+            startActivity(intent)
+        }
+
+
         recordBtn = findViewById<Button>(R.id.recordBtn)
         recordBtn.setOnClickListener {
             val intent = Intent(this, RecordActivity::class.java)
             startActivity(intent)
         }
+
 
         trainBtn = findViewById<Button>(R.id.trainBtn)
         trainBtn.setOnClickListener {
@@ -88,45 +97,37 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        foodBtn = findViewById(R.id.foodBtn)
-        foodBtn.setOnClickListener{
-            //새페이지 이동이 아니라 작은 창 띄워서 해결하고싶음
 
-        }
-
-
-
-
-        webview_btn = findViewById<Button>(R.id.WebView_btn)
-        webview_btn.setOnClickListener {
-            val intent = Intent(applicationContext, WebViewActivity::class.java)
-            //웹사이트로 연결
-//            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.naver.com"))
-
+        feedBtn = findViewById(R.id.feedBtn)
+        feedBtn.setOnClickListener{
+            val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
+
+//            super.onCreate(savedInstanceState)
+//            setContentView(R.layout.activity_feed)
+
+            //새페이지 이동이 아니라 작은 창 띄워서 해결하고싶음
+//            val builder = AlertDialog.Builder(this)
+//            builder.setTitle("Food Options")
+//            builder.setMessage("What would you like to do?")
+//            builder.setPositiveButton("Option 1") { dialog, which ->
+//                // Option 1 클릭 시 동작
+//            }
+//            builder.setNegativeButton("Option 2") { dialog, which ->
+//                // Option 2 클릭 시 동작
+//            }
+//            builder.setNeutralButton("Cancel") { dialog, which ->
+//                // 취소 클릭 시 동작
+//            }
+//            builder.show() // 팝업 창을 표시
         }
 
 
-        //웹뷰 연결
-        webView = findViewById(R.id.webView)
-        webView.webViewClient = WebViewClient()
 
 
-        // 웹뷰 설정 (JavaScript 활성화)
-        val webSettings = webView.settings
-        webSettings.javaScriptEnabled = true
-        webSettings.loadWithOverviewMode = true
-        webSettings.useWideViewPort = true
-        webSettings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
-        webSettings.domStorageEnabled = true
-        webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW  // HTTPS + HTTP 섞여도 허용
-        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
 
-        // Flask 서버의 영상 스트리밍 URL 입력 (IP 주소 수정 필요)
-        webView.loadUrl("https://192.168.0.6:5000/video")
-//        webView.loadUrl("https://www.youtube.com")
+
 
 
     }

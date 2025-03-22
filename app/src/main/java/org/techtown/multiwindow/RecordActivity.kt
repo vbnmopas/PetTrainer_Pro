@@ -189,9 +189,4 @@ class RecordActivity: AppCompatActivity() {
 
 
 
-
-
-
-
-
 }

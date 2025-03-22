@@ -3,6 +3,8 @@ package org.techtown.multiwindow
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.AudioTrack
+import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,15 +12,21 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.video.internal.audio.AudioSource
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
+//import java.util.concurrent.Executors
+//import org.webrtc.*
 
 class WebViewActivity : AppCompatActivity() {
 
