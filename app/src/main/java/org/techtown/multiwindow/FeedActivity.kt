@@ -1,6 +1,7 @@
 package org.techtown.multiwindow
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class FeedActivity  : AppCompatActivity() {
+
+    //버튼 변수 선언
+    lateinit var backButton : Button
+    lateinit var btn3 : Button
 
     private lateinit var radioGroup: RadioGroup
     private lateinit var instantFeedLayout: LinearLayout
@@ -52,6 +57,16 @@ class FeedActivity  : AppCompatActivity() {
         textViewAmount.text = "급식량: ${lastFeedAmount}g"
         textViewCurrentAmount.text = "현재 설정된 급식량: ${lastFeedAmount}g"  // 🔹 추가된 안내 문구
 
+
+        backButton = findViewById<Button>(R.id.backButton)
+        btn3 = findViewById<Button>(R.id.btn3)
+
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // 현재 액티비티 종료
+        }
 
 
         // 라디오 버튼 변경 이벤트 (즉시/예약 UI 전환)

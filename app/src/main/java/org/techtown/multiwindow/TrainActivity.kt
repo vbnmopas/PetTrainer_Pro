@@ -1,5 +1,6 @@
 package org.techtown.multiwindow
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,9 @@ import com.github.mikephil.charting.data.PieEntry
 
 
 class TrainActivity : AppCompatActivity() {
+
+    lateinit var backButton : Button
+    lateinit var btn3 : Button
 
     private val serverUrl = "http://192.168.0.6:5000/send" // Flask 서버 IP와 엔드포인트 수정
 
@@ -47,10 +51,16 @@ class TrainActivity : AppCompatActivity() {
             sendMessage("엎드리기")
         }
 
-//        foodBtn = findViewById(R.id.foodBtn)
-//        foodBtn.setOnClickListener {
-//            sendMessage("밥 주기")
-//        }
+        backButton = findViewById<Button>(R.id.backButton)
+        btn3 = findViewById<Button>(R.id.btn3)
+
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // 현재 액티비티 종료
+        }
+
     }
 
 

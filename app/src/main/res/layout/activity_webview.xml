@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <LinearLayout
         android:id="@+id/btnadd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bb"
         android:orientation="vertical">
 
         <!-- 상단 네비게이션 바 -->
@@ -18,63 +18,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- 상단 버튼 및 텍스트 영역 -->
             <LinearLayout
-                android:id="@+id/text1"
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="20dp">
 
                 <!-- 홈 버튼 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.2">
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="#162196F3"
+                    android:onClick="mlist"
+                    android:text="홈"
+                    android:textColor="@color/tt"
+                    android:textSize="16sp" />
 
-                    <Button
-                        android:id="@+id/backButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#FBF7F7"
-                        android:onClick="mlist"
-                        android:text="홈"
-                        android:textColor="@color/tt"
-                        android:textSize="15dp" />
-                </LinearLayout>
+                <!-- MY PET 텍스트 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:text="MY PET"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
-                <!-- 중앙 제목 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="MyPet"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <!-- 우측 버튼 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.2">
-
-                    <Button
-                        android:id="@+id/btn3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#FBF7F7"
-                        android:onClick="btn3"
-                        android:text=""
-                        android:textColor="@color/black"
-                        tools:ignore="SpeakableTextPresentCheck" />
-                </LinearLayout>
+                <!-- 버튼 -->
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="#162196F3"
+                    android:onClick="btn3"
+                    android:text="버튼"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -90,30 +82,34 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true" />
 
-
-            <!-- 웹뷰 (카메라 아래쪽부터 전체 영역) -->
-
+            <!-- 카메라 전환 버튼 (위쪽 오른쪽에 배치) -->
             <Button
                 android:id="@+id/btnSwitchCamera"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="-10dp"
-                android:layout_marginEnd="-3dp"
+                android:background="@drawable/button_rounded"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="전/후" />
 
+            <!-- 녹음 버튼 (전환 버튼 아래에 배치) -->
             <Button
                 android:id="@+id/recordButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MIC"
-                android:layout_below="@id/cameraView" />
+                android:layout_below="@id/btnSwitchCamera"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/button_rounded"
+                android:text="MIC" />
+
+            <!-- 웹뷰 (카메라 아래쪽부터 전체 영역) -->
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/cameraView"/>
+                android:layout_below="@id/cameraView" />
         </RelativeLayout>
 
     </LinearLayout>

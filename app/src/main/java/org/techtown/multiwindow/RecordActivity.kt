@@ -1,12 +1,14 @@
 package org.techtown.multiwindow
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,6 +23,9 @@ import java.util.*
 
 
 class RecordActivity: AppCompatActivity() {
+
+    lateinit var backButton : Button
+    lateinit var btn3 : Button
 
     /** XML 변수 */
     private lateinit var audioRecordImageBtn: ImageButton
@@ -50,6 +55,15 @@ class RecordActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
+
+        backButton = findViewById<Button>(R.id.backButton)
+        btn3 = findViewById<Button>(R.id.btn3)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // 현재 액티비티 종료
+        }
 
         init()
     }
