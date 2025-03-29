@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import android.media.AudioTrack
 import android.media.MediaRecorder
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.webkit.WebSettings
@@ -62,6 +64,7 @@ class WebViewActivity : AppCompatActivity() {
             finish() // 현재 액티비티 종료
         }
 
+
         // 카메라 전환 버튼 클릭 리스너
         btnSwitchCamera.setOnClickListener {
             // 기존 카메라 상태 반전
@@ -80,7 +83,6 @@ class WebViewActivity : AppCompatActivity() {
 
 
 
-
         //웹뷰 시작 ------------------------------------------------------------------
 
         webView = findViewById(R.id.webView)
@@ -96,14 +98,14 @@ class WebViewActivity : AppCompatActivity() {
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
-//        Thread {
-//            runOnUiThread {
-//                webView.loadUrl("http://google.com")
-//            }
-//        }.start()
+/*        Thread {
+            runOnUiThread {
+                webView.loadUrl("https://google.com")
+            }
+        }.start()*/
 
 
-        webView.loadUrl("http://192.168.0.6:5000/video")
+        webView.loadUrl("http://172.30.1.64:5000/video")
 
         //웹뷰 끝 -------------------------------------------------------------
     }
@@ -111,6 +113,7 @@ class WebViewActivity : AppCompatActivity() {
 
 
     //카메라 메서드
+
     private fun startCamera(previewView: PreviewView, isFrontCamera: Boolean) {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
