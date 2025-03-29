@@ -44,14 +44,14 @@
 
         <!-- 버튼 -->
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/AIbtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="#162196F3"
-            android:onClick="btn3"
-            android:text="버튼"
+            android:onClick="AIbtn"
+            android:text="chat bot"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>

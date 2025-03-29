@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:background="#162196F3"
             android:onClick="AIbtn"
-            android:text="버튼"
+            android:text="chat bot"
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>

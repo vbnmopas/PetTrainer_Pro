@@ -104,8 +104,8 @@ class WebViewActivity : AppCompatActivity() {
             }
         }.start()*/
 
-
-        webView.loadUrl("http://172.30.1.64:5000/video")
+//        webView.loadUrl("http://bing.com")
+        webView.loadUrl("http://172.30.1.88:5000/video")
 
         //웹뷰 끝 -------------------------------------------------------------
     }

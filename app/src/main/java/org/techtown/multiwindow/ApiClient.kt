@@ -5,16 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
     private const val BASE_URL = "https://api.openai.com/"
-/*
-    fun getChatGPTApi(): ChatGPTApi {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        return retrofit.create(ChatGPTApi::class.java)
-    }
-*/
     // ChatGPTApi 인스턴스를 제공하는 lazy 객체
     val chatGPTApi: ChatGPTApi by lazy {
         Retrofit.Builder()
