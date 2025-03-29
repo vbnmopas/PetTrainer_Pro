@@ -56,4 +56,13 @@ dependencies {
 
     //그래프 라이브러리
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //chatGPT API
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+    //lifecycleScope
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1" // 최신 버전으로 추가
+
 }

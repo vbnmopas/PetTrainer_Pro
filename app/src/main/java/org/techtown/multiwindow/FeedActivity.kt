@@ -16,7 +16,7 @@ class FeedActivity  : AppCompatActivity() {
 
     //버튼 변수 선언
     lateinit var backButton : Button
-    lateinit var btn3 : Button
+    lateinit var AIbtn : Button
 
     private lateinit var radioGroup: RadioGroup
     private lateinit var instantFeedLayout: LinearLayout
@@ -69,7 +69,7 @@ class FeedActivity  : AppCompatActivity() {
 
 
         backButton = findViewById<Button>(R.id.backButton)
-        btn3 = findViewById<Button>(R.id.btn3)
+        AIbtn = findViewById<Button>(R.id.AIbtn)
 
 
         backButton.setOnClickListener {
@@ -77,6 +77,13 @@ class FeedActivity  : AppCompatActivity() {
             startActivity(intent)
             finish() // 현재 액티비티 종료
         }
+
+        AIbtn.setOnClickListener {
+            val intent = Intent(this, GPTActivity::class.java)
+            startActivity(intent)
+            finish() // 현재 액티비티 종료
+        }
+
 
 
 
