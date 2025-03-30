@@ -144,12 +144,11 @@ class WebViewActivity : AppCompatActivity() {
         webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
 
-//        webView.loadUrl("http://bing.com")
-//        webView.loadUrl("http://192.168.180.214:5000/video")
+        webView.loadUrl("http://192.168.0.23:5000/video")
 
 
 
-        webView.loadUrl("http://192.168.180.228");
+//        webView.loadUrl("http://192.168.180.228");
 
 
         //웹뷰 끝 -------------------------------------------------------------

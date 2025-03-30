@@ -26,7 +26,9 @@ class TrainActivity : AppCompatActivity() {
     lateinit var backButton : Button
     lateinit var AIbtn : Button
 
-    private val serverUrl = "http://192.168.180.214:5000/send" // Flask 서버 IP와 엔드포인트 수정
+//    private val serverUrl = "http://192.168.180.214:5000/send" // Flask 서버 IP와 엔드포인트 수정
+    private val serverUrl = "http://192.168.0.23:5000/send"
+
 
     lateinit var sitBtn: Button
     lateinit var bodylowerBtn: Button
@@ -84,7 +86,7 @@ class TrainActivity : AppCompatActivity() {
                 Log.d("HTTP", "보내는 메시지: $message")
 
                 // URL 객체로 초기화
-                val url = URL("http://192.168.180.214:5000/send")
+                val url = URL(serverUrl)
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "POST"
                 conn.doOutput = true
@@ -208,6 +210,16 @@ class TrainActivity : AppCompatActivity() {
         successRates.forEach { (command, successRate) ->
             entries.add(PieEntry(successRate, command))
             Log.d("PieChartData", "Command: $command, Success Rate: $successRate%")
+        }
+
+        // 📌 성공률 텍스트 업데이트 코드 추가
+        val successRateTextView = findViewById<TextView>(R.id.successRateTextView)
+        if (successRates.isNotEmpty()) {
+            val avgSuccessRate = successRates.values.average() // 평균 성공률 계산
+            successRateTextView.text = "성공률: %.2f%%".format(avgSuccessRate)
+            Log.d("SuccessRateTextView", "성공률 업데이트됨: ${successRateTextView.text}")
+        } else {
+            successRateTextView.text = "성공률: 0.00%"
         }
 
         // 차트 데이터 설정
