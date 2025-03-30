@@ -10,6 +10,9 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import java.io.OutputStream
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.*
 
 class FeedActivity  : AppCompatActivity() {
@@ -139,18 +142,56 @@ class FeedActivity  : AppCompatActivity() {
         }
     }
 
-    // MQTT 또는 HTTP로 명령 전송하는 함수
-    private fun sendFeedCommand(mode: String, amount: Int, hour: Int = 0, minute: Int = 0) {
-        val message = if (mode == "immediate") {
-            "feed_now"
-        } else {
-            "schedule_feed:$hour:$minute:$amount"
-        }
+    private fun sendFeedCommand(command: String, amount: Int, hour: Int = 0, minute: Int = 0) {
+        Thread {
+            try {
+                Log.d("HTTP", "보내는 메시지: command=$command, amount=$amount, hour=$hour, minute=$minute")
 
-        // TODO: MQTT 또는 HTTP를 사용하여 ESP32로 메시지 전송
-        Log.d("Feeder", "보낼 메시지: $message")
+                // URL 객체로 초기화
+                val url = URL("http://192.168.180.214:5000/feed")  // 서버의 '/feed' 엔드포인트
+                val conn = url.openConnection() as HttpURLConnection
+                conn.requestMethod = "POST"
+                conn.doOutput = true
+                conn.setRequestProperty("Content-Type", "application/json")
 
+                // JSON 메시지 준비
+                val jsonPayload = if (command == "immediate") {
+                    """{"time": "immediate", "amount": $amount}"""  // 즉시 급식
+                } else {
+                    val scheduledTime = String.format("%02d:%02d", hour, minute)
+                    """{"time": "$scheduledTime", "amount": $amount}"""  // 예약 급식
+                }
+
+                val outputStream: OutputStream = conn.outputStream
+                outputStream.write(jsonPayload.toByteArray(Charsets.UTF_8))
+                outputStream.flush()
+                outputStream.close()
+
+                // 서버 응답 받기
+                val responseCode = conn.responseCode
+                val responseMessage = conn.inputStream.bufferedReader().use { it.readText() }
+
+                Log.d("HTTP", "Response Code: $responseCode, Response: $responseMessage")
+
+                runOnUiThread {
+                    if (responseCode == 200) {
+                        Toast.makeText(applicationContext, "배식이 완료되었습니다!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "배식 실패. 서버 오류 발생!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                conn.disconnect()
+            } catch (e: Exception) {
+                Log.e("HTTP", "HTTP Exception: ${e.message}")
+                runOnUiThread {
+                    Toast.makeText(applicationContext, "서버 연결 실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.start()
     }
+
+
 
     // 배식 완료 메시지 출력하는 함수
     private fun showCompletionDialog() {

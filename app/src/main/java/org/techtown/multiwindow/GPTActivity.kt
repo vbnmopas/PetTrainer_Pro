@@ -148,14 +148,14 @@ class GPTActivity : AppCompatActivity() {
         // 훈련 성공률을 포맷된 문자열로 변환
         val trainingStats = getTrainRecords()
 
-        if (feedRecord.isNotEmpty()) {
+        if (feedRecord.isNotEmpty() || trainingStats.isNotEmpty()) {
             val feedRecord = getFeedRecords()
 
             Log.d("GPTActivity", "훈련 성공률 문자열: $trainingStats")
 
             val initialMsg = "다음은 강아지의 급식 기록입니다:\n$feedRecord\n " +
                     "다음은 강아지의 훈련 성공률입니다:\n$trainingStats\n" +
-                    " 이 정보를 기반으로 오늘 강아지의 건강 상태를 분석해 주세요."
+                    " 이 정보를 기반으로 오늘 강아지의 건강 상태와 관심을 가져야할 것에 대해 분석, 조언 해주세요."
 
             Log.d("GPTActivity", "초기 메시지 전송: $initialMsg")  // 초기 메시지 로그
 
@@ -165,18 +165,15 @@ class GPTActivity : AppCompatActivity() {
             // 여기에 화면에 메시지를 표시하지 않도록 하기 위해 RecyclerView에 추가하지 않음
             chatMsgList.add(chatMsg)
 
-//            adapter.addChatMsg(chatMsg)
-//            chatMsgList.add(chatMsg)
-
             progressBar.visibility = View.VISIBLE
             window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
-            // ✅ 별도 메시지 리스트를 생성하여 초기 메시지 전송
+            // 별도 메시지 리스트를 생성하여 초기 메시지 전송
             lifecycleScope.launch {
                 sendInitialMsgToChatGPT(initialMsg)
             }
         } else {
-            Log.d("GPTActivity", "급식 기록이 비어 있습니다. 초기 메시지를 전송하지 않습니다.")
+            Log.d("GPTActivity", "기록이 비어 있습니다. 초기 메시지를 전송하지 않습니다.")
         }
     }
 

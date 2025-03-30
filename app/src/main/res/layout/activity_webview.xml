@@ -104,12 +104,19 @@
                 android:background="@drawable/button_rounded"
                 android:text="MIC" />
 
-            <!-- 웹뷰 (카메라 아래쪽부터 전체 영역) -->
+            <!-- SurfaceView 정의 -->
+            <!--<SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />-->
+
+            <!--웹뷰 (카메라 아래쪽부터 전체 영역) -->
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/cameraView" />
+                android:layout_below="@id/cameraView"/>
+
         </RelativeLayout>
 
     </LinearLayout>

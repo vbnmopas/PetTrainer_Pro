@@ -3,18 +3,24 @@ package org.techtown.multiwindow
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PixelFormat
 import android.media.AudioTrack
+import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.net.http.SslError
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.SurfaceHolder
+import android.view.SurfaceView
 import android.view.View
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Button
+import android.widget.MediaController
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -24,6 +30,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.File
+import java.io.IOException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -34,6 +41,9 @@ class WebViewActivity : AppCompatActivity() {
 
     // 웹뷰 선언
     lateinit var webView: WebView
+    private lateinit var surfaceView: SurfaceView
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var surfaceHolder: SurfaceHolder
 
     //카메라 변수 선언
     private lateinit var cameraExecutor: ExecutorService;
@@ -85,10 +95,45 @@ class WebViewActivity : AppCompatActivity() {
 
         //웹뷰 시작 ------------------------------------------------------------------
 
-        webView = findViewById(R.id.webView)
+       /* surfaceView = findViewById(R.id.surfaceView)
+
+        // SurfaceHolder 가져오기
+        surfaceHolder = surfaceView.holder
+
+        // SurfaceView의 상태 변경 리스너 설정
+        surfaceHolder.addCallback(object : SurfaceHolder.Callback {
+            override fun surfaceCreated(holder: SurfaceHolder) {
+                // Surface가 생성되면 MediaPlayer를 준비
+                mediaPlayer = MediaPlayer()
+
+                try {
+                    mediaPlayer.setDataSource("http://192.168.180.228:81/stream") // 스트리밍 URL
+                    mediaPlayer.setDisplay(surfaceHolder)
+                    mediaPlayer.prepareAsync()
+
+                    mediaPlayer.setOnPreparedListener {
+                        // 준비 완료 후 재생 시작
+                        mediaPlayer.start()
+                    }
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+
+            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+                // Surface 크기 변경 처리
+            }
+
+            override fun surfaceDestroyed(holder: SurfaceHolder) {
+                // Surface가 파괴되면 리소스를 해제
+                mediaPlayer.release()
+            }
+        })*/
+
+        webView= findViewById(R.id.webView)
 
         webView.webViewClient = WebViewClient()
-        val webSettings = webView.settings
+        val webSettings = webView.settings  // 수정된 부분
         webSettings.javaScriptEnabled = true
         webSettings.loadWithOverviewMode = true
         webSettings.useWideViewPort = true
@@ -98,18 +143,33 @@ class WebViewActivity : AppCompatActivity() {
         webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
-/*        Thread {
-            runOnUiThread {
-                webView.loadUrl("https://google.com")
-            }
-        }.start()*/
 
 //        webView.loadUrl("http://bing.com")
-        webView.loadUrl("http://172.30.1.88:5000/video")
+//        webView.loadUrl("http://192.168.180.214:5000/video")
+
+
+
+        webView.loadUrl("http://192.168.180.228");
+
 
         //웹뷰 끝 -------------------------------------------------------------
     }
 
+    override fun onPause() {
+        super.onPause()
+        // Activity가 일시 정지되면 MediaPlayer 중지
+        if (::mediaPlayer.isInitialized) {
+            mediaPlayer.pause()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Activity가 재개되면 MediaPlayer 재시작
+        if (::mediaPlayer.isInitialized && !mediaPlayer.isPlaying) {
+            mediaPlayer.start()
+        }
+    }
 
 
     //카메라 메서드
