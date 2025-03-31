@@ -1,3 +1,11 @@
+# yoloBranch의 .gitignore 내용
+yolov5/*.h5
+yolov5/*.pt
+yolov5/output.jpg
+yolov5/test.py
+*.pt
+
+# main의 .gitignore 내용
 *.iml
 .gradle
 /local.properties
