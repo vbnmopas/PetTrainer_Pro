@@ -2,3 +2,4 @@ yolov5/*.h5
 yolov5/*.pt
 yolov5/output.jpg
 yolov5/test.py
+*.pt
