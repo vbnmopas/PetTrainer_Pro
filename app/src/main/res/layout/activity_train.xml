@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 상단 버튼 및 텍스트 영역 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+        <!-- 홈 버튼 -->
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="#162196F3"
+            android:onClick="mlist"
+            android:text="홈"
+            android:textColor="@color/tt"
+            android:textSize="16sp" />
+
+        <!-- MY PET 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="MY PET"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!-- 버튼 -->
+        <Button
+            android:id="@+id/AIbtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="#162196F3"
+            android:onClick="AIbtn"
+            android:text="chat bot"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+        <!-- 버튼들을 수평으로 배치 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/sitBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="명령 보내기 - 앉아"
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_rounded"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/bodylowerBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_rounded"
+                android:text="명령 보내기 - 엎드려"
+                android:textSize="15sp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- 결과 메시지 텍스트 -->
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결과가 여기에 표시됩니다"
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- 성공률 텍스트 -->
+        <TextView
+            android:id="@+id/successRateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성공률: 0.00%"
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- PieChart (명령 성공률) -->
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/commandPieChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            tools:ignore="MissingClass" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

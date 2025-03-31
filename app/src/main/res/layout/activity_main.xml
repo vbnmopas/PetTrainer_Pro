@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#22FFC107"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="10">
+
+    <!-- 상단 버튼 및 텍스트 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 홈 버튼 -->
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="#162196F3"
+            android:onClick="mlist"
+            android:text="홈"
+            android:textColor="@color/tt"
+            android:textSize="16sp" />
+
+        <!-- MY PET 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="MY PET"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!-- 버튼 -->
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="#162196F3"
+            android:onClick="btn3"
+            android:text="버튼"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- 이미지 추가 -->
+    <ImageView
+        android:id="@+id/sampleImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/pet_1"
+        android:scaleType="centerCrop" />
+
+    <!-- 버튼 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- 웹뷰 버튼 -->
+        <Button
+            android:id="@+id/WebView_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_rounded"
+            android:text="웹뷰 띄우기"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <!-- 녹음하기 버튼 -->
+        <Button
+            android:id="@+id/recordBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_rounded"
+            android:text="녹음하기"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <!-- 훈련하기 버튼 -->
+        <Button
+            android:id="@+id/trainBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/button_rounded"
+            android:text="훈련하기"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <!-- 밥 주기 버튼 -->
+        <Button
+            android:id="@+id/feedBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rounded"
+            android:text="밥 주기"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </LinearLayout>
+</LinearLayout>
